@@ -1,1 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Journey Through Time: The Hopking Family Heritage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-ancient: #8B4513;
+            --color-medieval: #2C1810;
+            --color-renaissance: #654321;
+            --color-enlightenment: #4A3728;
+            --color-modern: #3D2817;
+            
+            --color-gold: #C9A961;
+            --color-gold-dark: #8B7355;
+            --color-parchment: #F4E8D8;
+            --color-parchment-dark: #E8DCC8;
+            --color-ink: #2C2416;
+            --color-ink-light: #4A3F2E;
+            
+            --color-royal-purple: #6B4BA1;
+            --color-marriage-red: #8B2635;
+            
+            --timeline-width: 4px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'EB Garamond', serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--color-ink);
+            background: linear-gradient(135deg, #F9F3E8 0%, #F4E8D8 100%);
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, rgba(0,0,0,0.01) 0px, transparent 1px, transparent 40px, rgba(0,0,0,0.01) 41px),
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.01) 0px, transparent 1px, transparent 40px, rgba(0,0,0,0.01) 41px);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .page-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(139, 69, 19, 0.05) 0%, transparent 100%);
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--color-gold), transparent);
+        }
+        
+        .hero h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--color-ancient);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 400;
+            color: var(--color-gold-dark);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .hero .timeline-span {
+            font-size: 1.1rem;
+            color: var(--color-ink-light);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .hero .introduction {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            font-size: 1.3rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+            text-align: left;
+            padding: 0 2rem;
+        }
+        
+        /* Timeline Navigation */
+        .timeline-nav {
+            position: fixed;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .timeline-nav-item {
+            position: relative;
+            padding: 1rem 1.5rem 1rem 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid var(--color-gold);
+            opacity: 0.5;
+        }
+        
+        .timeline-nav-item:hover,
+        .timeline-nav-item.active {
+            opacity: 1;
+            border-left-color: var(--color-ancient);
+        }
+        
+        .timeline-nav-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--color-parchment);
+            border: 2px solid var(--color-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-nav-item.active::before,
+        .timeline-nav-item:hover::before {
+            background: var(--color-ancient);
+            border-color: var(--color-ancient);
+            transform: translateY(-50%) scale(1.3);
+        }
+        
+        .timeline-nav-item .era-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-ink);
+            display: block;
+        }
+        
+        .timeline-nav-item .era-dates {
+            font-size: 0.75rem;
+            color: var(--color-ink-light);
+            opacity: 0.7;
+        }
+        
+        /* Main Content */
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+        
+        /* Central Timeline */
+        .central-timeline {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: var(--timeline-width);
+            background: linear-gradient(to bottom, 
+                var(--color-ancient) 0%,
+                var(--color-medieval) 25%,
+                var(--color-renaissance) 50%,
+                var(--color-enlightenment) 75%,
+                var(--color-modern) 100%
+            );
+            transform: translateX(-50%);
+        }
+        
+        /* Era Sections */
+        .era-section {
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            position: relative;
+        }
+        
+        .era-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .era-section:nth-child(even) .era-content {
+            margin-left: auto;
+            margin-right: 4rem;
+        }
+        
+        .era-section:nth-child(odd) .era-content {
+            margin-right: auto;
+            margin-left: 4rem;
+        }
+        
+        .era-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+        
+        .era-section:nth-child(even) .era-header {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+        
+        .era-date-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--color-parchment);
+            border: 4px solid var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--color-ancient);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        
+        .era-content {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 2px;
+            box-shadow: 0 8px 32px rgba(44, 36, 22, 0.08);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+        }
+        
+        .era-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--color-ancient);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .era-period {
+            font-size: 1.1rem;
+            color: var(--color-gold-dark);
+            font-style: italic;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .era-description {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            color: var(--color-ink);
+        }
+        
+        .era-description p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .era-description p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Quick Facts Box */
+        .quick-facts {
+            background: linear-gradient(135deg, rgba(107, 75, 161, 0.08) 0%, rgba(107, 75, 161, 0.04) 100%);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+            border-left: 4px solid var(--color-royal-purple);
+        }
+        
+        .quick-facts-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-royal-purple);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .quick-facts ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .quick-facts li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .quick-facts li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--color-royal-purple);
+            font-size: 0.7rem;
+        }
+        
+        /* Ancestor Cards */
+        .ancestor-cards {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .ancestor-card {
+            background: rgba(244, 232, 216, 0.5);
+            padding: 1.5rem;
+            border-radius: 2px;
+            border-left: 4px solid var(--color-gold);
+            transition: all 0.3s ease;
+        }
+        
+        .ancestor-card:hover {
+            background: rgba(244, 232, 216, 0.8);
+            border-left-color: var(--color-ancient);
+            transform: translateX(8px);
+        }
+        
+        .ancestor-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-ancient);
+            margin-bottom: 0.5rem;
+        }
+        
+        .ancestor-title {
+            font-size: 1rem;
+            color: var(--color-gold-dark);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+        }
+        
+        .ancestor-details {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--color-ink);
+        }
+        
+        /* Royal Marriage Moment */
+        .royal-marriage {
+            background: linear-gradient(135deg, rgba(139, 38, 53, 0.08) 0%, rgba(139, 38, 53, 0.04) 100%);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+            border: 2px solid var(--color-marriage-red);
+            position: relative;
+        }
+        
+        .royal-marriage::before {
+            content: '♔';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-parchment);
+            padding: 0 1rem;
+            font-size: 1.5rem;
+            color: var(--color-marriage-red);
+        }
+        
+        .royal-marriage-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-marriage-red);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .royal-marriage-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+        
+        /* Historical Context Box */
+        .historical-context {
+            background: rgba(201, 169, 97, 0.15);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+            border-left: 4px solid var(--color-gold);
+        }
+        
+        .historical-context-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-gold-dark);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        
+        .historical-context-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+        
+        /* Family Tree Visualization */
+        .family-tree-viz {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+            border: 2px dashed var(--color-gold);
+        }
+        
+        .tree-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-ancient);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .tree-branches {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .tree-level {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tree-node {
+            background: var(--color-parchment);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            border: 2px solid var(--color-gold);
+            text-align: center;
+            min-width: 180px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .tree-node-name {
+            font-weight: 600;
+            color: var(--color-ancient);
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .tree-node-dates {
+            font-size: 0.85rem;
+            color: var(--color-ink-light);
+        }
+        
+        .tree-connector {
+            width: 2px;
+            height: 30px;
+            background: var(--color-gold);
+            margin: 0 auto;
+        }
+        
+        /* Timeline Convergence (Concurrent) */
+        .timeline-convergence {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+        }
+        
+        .timeline-convergence-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-ancient);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .timeline-bars {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-bar {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-bar-label {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-ancient);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-bar-dates {
+            font-size: 0.85rem;
+            color: var(--color-ink-light);
+            margin-bottom: 0.8rem;
+        }
+        
+        .timeline-bar-visual {
+            height: 30px;
+            background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-bar-visual::after {
+            content: attr(data-period);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-parchment);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .convergence-arrow {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin: 1rem 0;
+        }
+        
+        .convergence-result {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--color-ancient);
+            color: var(--color-parchment);
+            border-radius: 4px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(139, 69, 19, 0.3);
+        }
+        
+        /* Connection Diagram */
+        .connection-diagram {
+            margin: 3rem 0;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            border: 2px solid var(--color-gold);
+        }
+        
+        .connection-diagram-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-ancient);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .connection-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .connection-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .connection-box {
+            background: var(--color-parchment);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            border: 2px solid var(--color-gold);
+            font-family: 'Crimson Pro', serif;
+            font-weight: 600;
+            color: var(--color-ancient);
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .connection-arrow {
+            font-size: 1.5rem;
+            color: var(--color-gold);
+        }
+        
+        .connection-split {
+            font-size: 0.9rem;
+            color: var(--color-ink-light);
+            font-style: italic;
+            text-align: center;
+            padding: 0.5rem;
+        }
+        
+        /* Historical Note */
+        .historical-note {
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.1) 0%, rgba(201, 169, 97, 0.05) 100%);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--color-gold);
+            border-radius: 2px;
+            font-style: italic;
+        }
+        
+        .historical-note::before {
+            content: '※';
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin-right: 1rem;
+            float: left;
+            line-height: 1;
+        }
+        
+        /* Moment in Time */
+        .moment-in-time {
+            max-width: 700px;
+            margin: 6rem auto;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(139, 69, 19, 0.03);
+            border-radius: 4px;
+            border-top: 2px solid var(--color-gold);
+            border-bottom: 2px solid var(--color-gold);
+        }
+        
+        .moment-in-time-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .moment-in-time-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--color-ink);
+            font-style: italic;
+        }
+        
+        /* Footer */
+        .journey-footer {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(139, 69, 19, 0.05) 100%);
+        }
+        
+        .footer-ornament {
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin-bottom: 2rem;
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-ink-light);
+            font-style: italic;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .timeline-nav {
+                display: none;
+            }
+            
+            .central-timeline {
+                left: 2rem;
+            }
+            
+            .era-section:nth-child(even) .era-content,
+            .era-section:nth-child(odd) .era-content {
+                margin-left: 5rem;
+                margin-right: 2rem;
+            }
+            
+            .era-date-marker {
+                left: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .central-timeline {
+                left: 1rem;
+            }
+            
+            .era-section:nth-child(even) .era-content,
+            .era-section:nth-child(odd) .era-content {
+                margin-left: 3rem;
+                margin-right: 1rem;
+            }
+            
+            .era-content {
+                padding: 2rem;
+            }
+            
+            .era-date-marker {
+                left: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 0.8rem;
+            }
+            
+            .tree-level {
+                flex-direction: column;
+            }
+            
+            .connection-level {
+                flex-direction: column;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero > * {
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .hero h1 {
+            animation-delay: 0.2s;
+        }
+        
+        .hero .subtitle {
+            animation-delay: 0.4s;
+        }
+        
+        .hero .timeline-span {
+            animation-delay: 0.6s;
+        }
+        
+        .hero .introduction {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>A Journey Through Time</h1>
+            <div class="subtitle">The Hopking Family Heritage</div>
+            <div class="timeline-span">747 AD — Present Day</div>
+            <div class="introduction">
+                <p>From the courts of Charlemagne to the fields of Norfolk, from the castles of Scottish kings to the streets of Georgian London, this is a story spanning more than twelve centuries. It is a story of emperors and farmers, of nobles and merchants, of migration and marriage, of survival and prosperity.</p>
+                <p>This is the chronicle of one family's remarkable journey through the great sweep of European history.</p>
+            </div>
+        </section>
 
+        <!-- Timeline Navigation -->
+        <nav class="timeline-nav" id="timelineNav">
+            <div class="timeline-nav-item active" data-section="ancient">
+                <span class="era-name">Ancient Foundations</span>
+                <span class="era-dates">747–1066</span>
+            </div>
+            <div class="timeline-nav-item" data-section="scottish">
+                <span class="era-name">Scottish Kings</span>
+                <span class="era-dates">842–1329</span>
+            </div>
+            <div class="timeline-nav-item" data-section="campbell">
+                <span class="era-name">Campbell Rise</span>
+                <span class="era-dates">1314–1800</span>
+            </div>
+            <div class="timeline-nav-item" data-section="convergence">
+                <span class="era-name">Noble Convergence</span>
+                <span class="era-dates">1400–1800</span>
+            </div>
+            <div class="timeline-nav-item" data-section="hopking">
+                <span class="era-name">Hopking Line</span>
+                <span class="era-dates">1660–1900</span>
+            </div>
+            <div class="timeline-nav-item" data-section="modern">
+                <span class="era-name">Modern Era</span>
+                <span class="era-dates">1900–Present</span>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="central-timeline"></div>
+
+            <!-- ERA 1: Ancient Foundations -->
+            <section class="era-section" id="ancient">
+                <div class="era-date-marker">747</div>
+                <div class="era-content">
+                    <div class="era-header">
+                        <div>
+                            <h2 class="era-title">Ancient Foundations</h2>
+                            <div class="era-period">747 AD – 1066 AD</div>
+                        </div>
+                    </div>
+                    
+                    <div class="era-description">
+                        <p>Our journey begins in the eighth century, in the time of great empires and the forging of Europe as we know it. Through marriages and alliances spanning centuries, the family line traces back to the most celebrated rulers of the early medieval period.</p>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-facts-title">Quick Facts</div>
+                        <ul>
+                            <li>Charlemagne ruled an empire covering much of Western Europe</li>
+                            <li>Alfred the Great saved England from Viking conquest</li>
+                            <li>William's conquest in 1066 changed English history forever</li>
+                            <li>Royal bloodlines intermarried extensively across medieval Europe</li>
+                        </ul>
+                    </div>
+
+                    <div class="ancestor-cards">
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Charlemagne (Charles the Great)</div>
+                            <div class="ancestor-title">King of the Franks, Emperor of the Romans</div>
+                            <div class="ancestor-details">
+                                747–814 AD • Through his vast empire and numerous descendants, Charlemagne's bloodline spread throughout European nobility. The family connection flows through his son Louis the Pious and the Carolingian dynasty, eventually reaching the royal houses of France, England, and Scotland.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Alfred the Great</div>
+                            <div class="ancestor-title">King of the West Saxons, King of the Anglo-Saxons</div>
+                            <div class="ancestor-details">
+                                848–899 AD • The only English king to be called "the Great," Alfred defended England against Viking invasions, promoted education and law, and laid the foundations for the unified English kingdom. Our line descends through his son Edward the Elder and continues through subsequent Anglo-Saxon and Norman monarchs.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">William the Conqueror</div>
+                            <div class="ancestor-title">Duke of Normandy, King of England</div>
+                            <div class="ancestor-details">
+                                c. 1028–1087 • The Norman Conquest of 1066 forever changed England. William's victory at Hastings established a new royal dynasty. The family descends through his granddaughter Matilda and her connection to the Scottish royal house.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="historical-context">
+                        <div class="historical-context-title">⚔ 1066 — Battle of Hastings</div>
+                        <div class="historical-context-content">
+                            While William the Conqueror was defeating King Harold at Hastings and claiming the English throne, our Norman ancestors were establishing themselves in the new order that would rule England for centuries to come.
+                        </div>
+                    </div>
+
+                    <div class="historical-note">
+                        These ancient connections remind us that noble bloodlines were thoroughly interconnected across medieval Europe. Marriage alliances between royal houses meant that descent from one medieval monarch often implies descent from many others.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Moment in Time 1 -->
+            <div class="moment-in-time">
+                <div class="moment-in-time-icon">⏳</div>
+                <div class="moment-in-time-text">
+                    "In 1215, while King John reluctantly signed Magna Carta at Runnymede, our ancestors were among the Norman nobility who had helped shape the feudal system that charter would eventually transform."
+                </div>
+            </div>
+
+            <!-- ERA 2: Scottish Kings -->
+            <section class="era-section" id="scottish">
+                <div class="era-date-marker">842</div>
+                <div class="era-content">
+                    <div class="era-header">
+                        <div>
+                            <h2 class="era-title">The Scottish Kings</h2>
+                            <div class="era-period">842 AD – 1329 AD</div>
+                        </div>
+                    </div>
+                    
+                    <div class="era-description">
+                        <p>The family's Scottish heritage runs deep, connecting to the very founding of the Kingdom of Scotland and continuing through its most celebrated rulers. From the first king to unite the Picts and Scots, through the warrior kings who defended Scotland's independence, this lineage represents the heart of Scottish royal history.</p>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-facts-title">Quick Facts</div>
+                        <ul>
+                            <li>Kenneth MacAlpin first united the Picts and Scots in 842</li>
+                            <li>Malcolm III's marriage united Scottish and Anglo-Saxon royal lines</li>
+                            <li>Robert the Bruce secured Scottish independence at Bannockburn (1314)</li>
+                            <li>Scotland remained an independent kingdom until the Union of 1707</li>
+                        </ul>
+                    </div>
+
+                    <div class="ancestor-cards">
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Kenneth I MacAlpin</div>
+                            <div class="ancestor-title">"The Conqueror" — First King of Scots</div>
+                            <div class="ancestor-details">
+                                r. 842–858 • Kenneth united the kingdoms of the Picts and the Scots, creating what would become Scotland. Known in Gaelic as Cináed mac Ailpín, he established his capital at Scone and began a dynasty that would rule Scotland for generations. His unification of these rival peoples was a military and political achievement that shaped Scottish identity for centuries.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Malcolm II</div>
+                            <div class="ancestor-title">King of Scotland</div>
+                            <div class="ancestor-details">
+                                r. 1005–1034 • A formidable warrior-king who secured Scotland's borders and defeated Northumbrian invasions. His reign saw Scotland expand and consolidate power. Through his daughter Bethoc, he ensured the throne would pass to his grandson Duncan, continuing the royal line that connects directly to our family.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Malcolm III "Canmore"</div>
+                            <div class="ancestor-title">King of Scotland, "Great Chief"</div>
+                            <div class="ancestor-details">
+                                r. 1058–1093 • Malcolm "Canmore" (meaning "Great Chief" or "Big Head") took the throne after defeating Macbeth. His reign transformed Scotland, bringing Anglo-Saxon cultural influences and strengthening ties with England. He married Margaret of Wessex, granddaughter of the Anglo-Saxon king Edmund Ironside—a pivotal royal marriage that united two great bloodlines.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">David I "The Saint"</div>
+                            <div class="ancestor-title">King of Scotland</div>
+                            <div class="ancestor-details">
+                                r. 1124–1153 • The sixth son of Malcolm III and Saint Margaret, David revolutionized Scotland through Norman-style reforms. He founded numerous monasteries and burghs, introduced feudalism, and established royal burghs that became Scotland's major cities. His reforms modernized the kingdom and created the administrative framework that would last for centuries.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Robert the Bruce (Robert I)</div>
+                            <div class="ancestor-title">King of Scotland, "The Hero King"</div>
+                            <div class="ancestor-details">
+                                1274–1329 • Scotland's legendary warrior king who secured independence at Bannockburn in 1314. His victory over Edward II's much larger English army is one of history's greatest military triumphs. Robert's sister Mary Bruce married Sir Neil Campbell, creating the crucial link between the Bruce royal line and the Campbell family that connects to our heritage.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="royal-marriage">
+                        <div class="royal-marriage-title">Royal Marriage Moment: 1069/70</div>
+                        <div class="royal-marriage-content">
+                            <p><strong>Malcolm III of Scotland + Saint Margaret of Wessex</strong></p>
+                            <p>This union joined the Scottish royal house with the Anglo-Saxon line descended from Alfred the Great. Margaret brought Anglo-Saxon culture and religion to the Scottish court, while their children would claim both Scottish and English royal heritage. This marriage created a bloodline that would eventually unite the crowns of Scotland and England.</p>
+                        </div>
+                    </div>
+
+                    <div class="historical-context">
+                        <div class="historical-context-title">⚔ 1314 — Battle of Bannockburn</div>
+                        <div class="historical-context-content">
+                            Robert the Bruce's outnumbered Scottish army defeated Edward II's English forces in a two-day battle that secured Scottish independence. Our ancestor Sir Neil Campbell fought alongside Robert, cementing the Campbell family's place in Scottish history.
+                        </div>
+                    </div>
+
+                    <div class="family-tree-viz">
+                        <div class="tree-title">Scottish Royal Descent</div>
+                        <div class="tree-branches">
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Kenneth I MacAlpin</div>
+                                    <div class="tree-node-dates">r. 842–858</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Constantine I</div>
+                                    <div class="tree-node-dates">r. 862–877</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Malcolm II</div>
+                                    <div class="tree-node-dates">r. 1005–1034</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Duncan I</div>
+                                    <div class="tree-node-dates">r. 1034–1040</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Malcolm III + St Margaret</div>
+                                    <div class="tree-node-dates">r. 1058–1093</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">David I</div>
+                                    <div class="tree-node-dates">r. 1124–1153</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div style="text-align: center; padding: 1rem; color: var(--color-ink-light); font-style: italic;">
+                                ↓ Multiple generations ↓
+                            </div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Robert the Bruce</div>
+                                    <div class="tree-node-dates">r. 1306–1329</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Moment in Time 2 -->
+            <div class="moment-in-time">
+                <div class="moment-in-time-icon">⏳</div>
+                <div class="moment-in-time-text">
+                    "In 1492, while Christopher Columbus sailed to the Americas, our ancestors were living in the Scottish Highlands, part of the Campbell clan that would soon rise to become one of Scotland's most powerful families."
+                </div>
+            </div>
+
+            <!-- ERA 3: The Campbell Connection -->
+            <section class="era-section" id="campbell">
+                <div class="era-date-marker">1314</div>
+                <div class="era-content">
+                    <div class="era-header">
+                        <div>
+                            <h2 class="era-title">The Campbell Rise</h2>
+                            <div class="era-period">1314 AD – 1800 AD</div>
+                        </div>
+                    </div>
+                    
+                    <div class="era-description">
+                        <p>The Campbell family rose from Scottish nobility to become one of the most powerful families in Scotland, serving as Dukes of Argyll and holding the ancient Barony of Balvill (Balwill). Our Campbell ancestors connect to these mighty lords through the early Campbell chiefs.</p>
+                        
+                        <p>Sir Neil Campbell of Lochawe fought alongside Robert the Bruce at Bannockburn and married the king's sister, Mary Bruce. Their descendants became the Lords Campbell, then Earls of Argyll, and eventually Dukes of Argyll—one of the premier noble families of Scotland.</p>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-facts-title">Quick Facts</div>
+                        <ul>
+                            <li>The Campbells became one of Scotland's most powerful clans</li>
+                            <li>The Barony of Balvill was granted by Crown Charter in 1630</li>
+                            <li>Our Campbell line branches before the dukedom but shares early ancestors</li>
+                            <li>The family eventually connected to Jamaica through marriage</li>
+                        </ul>
+                    </div>
+
+                    <div class="historical-note">
+                        The Barony of Balvill has a remarkable history. Originally granted by charter in 1630, it passed through various branches of the Campbell family. While the Dukes of Argyll represent the main Campbell line, our family's Campbell ancestry intersects with the earlier chiefs before branching toward a different path—one that would eventually lead to Jamaica and back through the Scarlett line.
+                    </div>
+
+                    <div class="ancestor-cards">
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Sir Neil Campbell</div>
+                            <div class="ancestor-title">of Lochawe and Ardskeodnish</div>
+                            <div class="ancestor-details">
+                                d. c. 1315 • Knight who fought at Bannockburn, married Mary Bruce (sister of Robert the Bruce). Earl of Atholl. His descendants through his son Colin became the Lords Campbell and later Earls of Argyll.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Archibald Campbell, 1st Marquess of Argyll</div>
+                            <div class="ancestor-title">Baron of Balvill</div>
+                            <div class="ancestor-details">
+                                1607–1661 • A key figure in Scottish history during the Wars of the Three Kingdoms. The Barony of Balvill was held by the Campbell Earls and Marquesses of Argyll during this period, a title that would pass through several generations.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Peter Campbell, 9th of Kilmory</div>
+                            <div class="ancestor-title">Connection Point</div>
+                            <div class="ancestor-details">
+                                Our Campbell line intersects here. Peter Campbell's daughter Florence married Percy Romilly Walsham of the Chinese Maritime Customs Service, bringing together the Campbell, Walsham, and Scarlett family lines.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="connection-diagram">
+                        <div class="connection-diagram-title">How We Connect to the Campbells</div>
+                        <div class="connection-flow">
+                            <div class="connection-level">
+                                <div class="connection-box">Charlemagne<br>↓<br>Alfred the Great<br>↓<br>Scottish Kings<br>↓<br>Robert the Bruce</div>
+                            </div>
+                            <div class="connection-arrow">↓</div>
+                            <div class="connection-level">
+                                <div class="connection-box">Early Campbell Chiefs<br>(1300s–1400s)</div>
+                            </div>
+                            <div class="connection-arrow">↓</div>
+                            <div class="connection-split">— Two branches diverge —</div>
+                            <div class="connection-level">
+                                <div class="connection-box">Main Line →<br>Earls of Argyll<br>↓<br>Dukes of Argyll<br>↓<br>Barons of Balvill</div>
+                                <div class="connection-box">Our Branch →<br>Peter Campbell<br>9th of Kilmory<br>↓<br>Florence Campbell<br>↓<br>Walsham Line</div>
+                            </div>
+                            <div class="connection-arrow">↓</div>
+                            <div class="connection-level">
+                                <div class="connection-box">HOPKING LINE</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="historical-context">
+                        <div class="historical-context-title">📜 1707 — Acts of Union</div>
+                        <div class="historical-context-content">
+                            The Scottish and English Parliaments united to form Great Britain. The Campbell Dukes of Argyll played significant roles in this union, while our Campbell branch had already begun its journey toward new horizons.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Moment in Time 3 -->
+            <div class="moment-in-time">
+                <div class="moment-in-time-icon">⏳</div>
+                <div class="moment-in-time-text">
+                    "In 1776, as the American colonies declared independence, the Scarlett family was establishing plantations in Jamaica, while the Walsham family held their estates in Herefordshire, and the Campbells governed from their Scottish strongholds—three family lines that would converge generations later."
+                </div>
+            </div>
+
+            <!-- ERA 4: Noble Convergence -->
+            <section class="era-section" id="convergence">
+                <div class="era-date-marker">1473</div>
+                <div class="era-content">
+                    <div class="era-header">
+                        <div>
+                            <h2 class="era-title">The Noble Convergence</h2>
+                            <div class="era-period">1400 AD – 1800 AD</div>
+                        </div>
+                    </div>
+                    
+                    <div class="era-description">
+                        <p>During the late medieval and early modern periods, multiple noble families—each with their own distinguished histories—developed concurrently across Britain and its colonies. The Walsham family of the Welsh marches, the Scarlett family with their Jamaican plantations, the ancient Shirley family, and our Campbell branch all flourished in parallel before their eventual union.</p>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-facts-title">Quick Facts</div>
+                        <ul>
+                            <li>Four distinct noble families existed simultaneously across centuries</li>
+                            <li>Geographic reach: Scotland, Wales, Sussex, Jamaica</li>
+                            <li>All families converged in the 19th-20th centuries through marriage</li>
+                            <li>Each brought unique heritage: Scottish lords, Welsh gentry, colonial planters</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-convergence">
+                        <div class="timeline-convergence-title">Four Families Through Time</div>
+                        <div class="timeline-bars">
+                            <div class="timeline-bar">
+                                <div class="timeline-bar-label">Walsham Family</div>
+                                <div class="timeline-bar-dates">Herefordshire Gentry • 1473–1900s</div>
+                                <div class="timeline-bar-visual" data-period="430+ years" style="width: 90%;"></div>
+                            </div>
+                            
+                            <div class="timeline-bar">
+                                <div class="timeline-bar-label">Scarlett Family</div>
+                                <div class="timeline-bar-dates">Jamaica Planters • 1625–1800s</div>
+                                <div class="timeline-bar-visual" data-period="175+ years" style="width: 70%;"></div>
+                            </div>
+                            
+                            <div class="timeline-bar">
+                                <div class="timeline-bar-label">Shirley Family</div>
+                                <div class="timeline-bar-dates">Sussex Nobility • Medieval–1600s</div>
+                                <div class="timeline-bar-visual" data-period="300+ years" style="width: 75%;"></div>
+                            </div>
+                            
+                            <div class="timeline-bar">
+                                <div class="timeline-bar-label">Campbell Family</div>
+                                <div class="timeline-bar-dates">Scottish Lords • 1300s–1800s</div>
+                                <div class="timeline-bar-visual" data-period="500+ years" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="convergence-arrow">↓</div>
+                        <div class="convergence-result">Marriage Alliances Unite All Four Lines</div>
+                        <div class="convergence-arrow">↓</div>
+                        <div class="convergence-result">THE HOPKING LINE</div>
+                    </div>
+
+                    <div class="ancestor-cards">
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">The Walsham Family</div>
+                            <div class="ancestor-title">Knill Court, Herefordshire</div>
+                            <div class="ancestor-details">
+                                The Walshams were established gentry in the Welsh marches from 1473, holding Knill Court in Herefordshire. Sir John Walsham was created a baronet in 1831. Percy Romilly Walsham married Florence Campbell, uniting these two distinguished lines. Their daughter Gladys Newell Walsham married into the Hopking family.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">The Scarlett Family</div>
+                            <div class="ancestor-title">Eastbourne & Jamaica</div>
+                            <div class="ancestor-details">
+                                Benjamin Scarlett (1625–1660) was a barrister in London and Eastbourne. His descendants became Jamaican plantation owners, acquiring the Wagwater River estate. The family's Jamaica connection lasted several generations before returning to England, where Frances Sophia Mostyn Scarlett married into the Campbell-Walsham line.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">The Shirley Family</div>
+                            <div class="ancestor-title">Wiston, Sussex</div>
+                            <div class="ancestor-details">
+                                An ancient family descended from the de Braose lords of the Welsh marches. The Shirleys held Wiston in Sussex and were prominent in county affairs. They connect to the line through the Lomax and Scarlett families, adding another layer of nobility to the family's heritage.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="historical-note">
+                        This period saw the family's geographic expansion from Scotland and the Welsh marches to the Caribbean and back. Each family brought its own heritage, lands, and connections, creating a rich tapestry of British and colonial history. These families existed simultaneously, governing their domains and building their fortunes, before destiny brought them together through marriage.
+                    </div>
+                </div>
+            </section>
+
+            <!-- ERA 5: The Hopking Line -->
+            <section class="era-section" id="hopking">
+                <div class="era-date-marker">1660</div>
+                <div class="era-content">
+                    <div class="era-header">
+                        <div>
+                            <h2 class="era-title">The Hopking Line</h2>
+                            <div class="era-period">1660 AD – 1900 AD</div>
+                        </div>
+                    </div>
+                    
+                    <div class="era-description">
+                        <p>The Hopking family's documented history begins in rural mid-Norfolk in the 1660s, where they lived as farmers and small landholders in villages like Little Dunham and East Bilney. For nearly two centuries, they remained rooted in this landscape of big skies and prominent church towers.</p>
+                        
+                        <p>By the 1840s, as the Hungry Forties brought agricultural hardship and a large family needed new opportunities, the Hopkings began their migration. From Norfolk's villages to London's growing suburbs, from Tottenham to Dublin, the family adapted to the changing times while maintaining their character and resilience.</p>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-facts-title">Quick Facts</div>
+                        <ul>
+                            <li>Family origins in Norfolk villages, 1660s onwards</li>
+                            <li>Nearly 200 years as Norfolk farmers and small landholders</li>
+                            <li>Mass migration in 1840s due to agricultural depression</li>
+                            <li>Success as wine merchants in Victorian London</li>
+                            <li>Entire generation born in Dublin before Irish independence</li>
+                        </ul>
+                    </div>
+
+                    <div class="historical-context">
+                        <div class="historical-context-title">🌾 1845-1852 — The Hungry Forties</div>
+                        <div class="historical-context-content">
+                            A period of agricultural depression, bad harvests, and the Irish Potato Famine created widespread hardship. The Hopking family, with ten children to support, joined millions of rural British families migrating to cities seeking new opportunities.
+                        </div>
+                    </div>
+
+                    <div class="ancestor-cards">
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Robert Hopkin</div>
+                            <div class="ancestor-title">Little Dunham, Norfolk</div>
+                            <div class="ancestor-details">
+                                d. 1695/6 • The earliest documented Hopking ancestor, buried in Little Dunham. His descendants would work the land in Norfolk for several generations, living through the restoration of Charles II, the Glorious Revolution, and the early Georgian period.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">John Hopking/Hopkins</div>
+                            <div class="ancestor-title">East Bilney & Gressenhall</div>
+                            <div class="ancestor-details">
+                                d. 1783 • Of East Bilney and Gressenhall, Norfolk. His will was proved in 1783. By this time, the family spelling had begun to settle on "Hopking," though variations continued into the 19th century.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Henry George Hopking</div>
+                            <div class="ancestor-title">The Great Migration</div>
+                            <div class="ancestor-details">
+                                1798–1875 • Father of ten surviving children. The agricultural difficulties of the 1840s forced this generation to seek opportunities beyond Norfolk. Of his ten children, nine had left the county by 1861—some to London, others as far as India and America.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Henry Hopking(s)</div>
+                            <div class="ancestor-title">Wine Merchant of London</div>
+                            <div class="ancestor-details">
+                                1836–1906 • Baptised in Watlington, Norfolk. Became a wine merchant in Hackney, then Edmonton and Tottenham. Married Catherine Ann Dawson in 1864. His success in the wine trade established the family in London's growing suburbs along the old Roman road from Norfolk to the City.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Richard Smith Hopking</div>
+                            <div class="ancestor-title">Dublin Connection</div>
+                            <div class="ancestor-details">
+                                1868–1944 • Born in Edmonton, he became a brewer's manager and moved to Dublin, where an entire generation of Hopkings was born. The family lived through the tumultuous events of Irish independence before returning to England.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="historical-note">
+                        When Daniel Defoe rode through Norfolk in the 1720s, he found it "teeming with spinners, weavers and tradesmen" with "a face of diligence spread over the whole country." A century later, the Napoleonic Wars and the Hungry Forties had changed that prosperity. The Hopking family's migration to London was part of a great movement from countryside to city that characterized Victorian England.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Moment in Time 4 -->
+            <div class="moment-in-time">
+                <div class="moment-in-time-icon">⏳</div>
+                <div class="moment-in-time-text">
+                    "In 1837, as Queen Victoria ascended the throne to begin her 63-year reign, Henry George Hopking was raising ten children in rural Norfolk, unaware that within a generation, his descendants would be merchants in the capital of the very empire Victoria would come to symbolize."
+                </div>
+            </div>
+
+            <!-- ERA 6: Modern Era -->
+            <section class="era-section" id="modern">
+                <div class="era-date-marker">1900</div>
+                <div class="era-content">
+                    <div class="era-header">
+                        <div>
+                            <h2 class="era-title">The Modern Era</h2>
+                            <div class="era-period">1900 AD – Present Day</div>
+                        </div>
+                    </div>
+                    
+                    <div class="era-description">
+                        <p>The twentieth century brought the convergence of all these family lines—royal, noble, and common—in the marriage of Lt. Col. Henry Richard Hopking OBE to Gladys Newell Walsham. Their union brought together the Hopking line from Norfolk and London with the Walsham-Campbell-Scarlett heritage.</p>
+                        
+                        <p>Born in Dublin during the final years of British rule in Ireland, Henry Richard Hopking served with distinction in the Suffolk Regiment, his military career taking him from the West Indies to Burma. His son Richard Scarlett Hopking settled in Suffolk, and it is here that the family's long journey—from Charlemagne's court to Norfolk's fields, from Scottish castles to Dublin streets—finds its present home.</p>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="quick-facts-title">Quick Facts</div>
+                        <ul>
+                            <li>Marriage in Shanghai (1930) united all family lines</li>
+                            <li>Military service across British Empire in 20th century</li>
+                            <li>Family returned to East Anglia where Hopking name originated</li>
+                            <li>1200+ year journey from Charlemagne to present day</li>
+                        </ul>
+                    </div>
+
+                    <div class="historical-context">
+                        <div class="historical-context-title">🇮🇪 1922 — Irish Independence</div>
+                        <div class="historical-context-content">
+                            The Irish Free State was established, ending 700 years of British rule. The Hopking family, with an entire generation born in Dublin, witnessed this transformation firsthand before returning to England as Ireland charted its own course.
+                        </div>
+                    </div>
+
+                    <div class="ancestor-cards">
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Lt. Col. Henry Richard Hopking OBE</div>
+                            <div class="ancestor-title">Suffolk Regiment</div>
+                            <div class="ancestor-details">
+                                1900–1965 • Born in Dublin, educated at Christ's Hospital. Professional soldier with a distinguished career. Married Gladys Newell Walsham in Shanghai in 1930, uniting the Hopking line with the Walsham-Campbell-Scarlett heritage. Awarded OBE 1950.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Gladys Newell Walsham</div>
+                            <div class="ancestor-title">Born in Ningpo, China</div>
+                            <div class="ancestor-details">
+                                1908–1982 • Daughter of Percy Romilly Walsham and Charlotte Cunningham Scott Myers. Her father served in the Chinese Maritime Customs Service. Through her mother's line came the Campbell and Scarlett connections, bringing together centuries of Scottish, Welsh, English, and colonial history.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Richard Scarlett Hopking</div>
+                            <div class="ancestor-title">Bury St Edmunds, Suffolk</div>
+                            <div class="ancestor-details">
+                                1936–present • Born in Bury St Edmunds. Marketing executive and arborist. Father of Mark Richard Hopking. The family's return to East Anglia brought the line back to the region where the Hopking name first appeared in the 1660s.
+                            </div>
+                        </div>
+
+                        <div class="ancestor-card">
+                            <div class="ancestor-name">Mark Richard Hopking</div>
+                            <div class="ancestor-title">Present Day</div>
+                            <div class="ancestor-details">
+                                Born 1971 in Colchester, Essex. Sea captain. Married Judy Margaret Barber in 2008. Through more than twelve centuries and countless lives, the journey through time reaches its present chapter—carrying forward the heritage of emperors and farmers, warriors and merchants, Scots and English, into the twenty-first century.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="royal-marriage">
+                        <div class="royal-marriage-title">The Final Convergence: 1930</div>
+                        <div class="royal-marriage-content">
+                            <p><strong>Henry Richard Hopking + Gladys Newell Walsham</strong></p>
+                            <p>Married in Shanghai, China, this union brought together: the Hopking line (Norfolk farmers to London merchants), the Walsham line (Welsh marches gentry), the Campbell line (Scottish nobility descended from Robert the Bruce), and the Scarlett line (colonial Jamaica). All the threads of this 1200-year journey wove together in a single marriage.</p>
+                        </div>
+                    </div>
+
+                    <div class="family-tree-viz">
+                        <div class="tree-title">The Final Convergence</div>
+                        <div class="tree-branches">
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Hopking Line</div>
+                                    <div class="tree-node-dates">Norfolk → London → Dublin</div>
+                                </div>
+                                <div style="padding: 2rem; font-size: 2rem; color: var(--color-gold);">+</div>
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Walsham-Campbell-Scarlett</div>
+                                    <div class="tree-node-dates">Scotland → Wales → Jamaica → England</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Henry Richard & Gladys Newell</div>
+                                    <div class="tree-node-dates">m. 1930 Shanghai</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Richard Scarlett Hopking</div>
+                                    <div class="tree-node-dates">b. 1936</div>
+                                </div>
+                            </div>
+                            <div class="tree-connector"></div>
+                            <div class="tree-level">
+                                <div class="tree-node">
+                                    <div class="tree-node-name">Mark Richard Hopking</div>
+                                    <div class="tree-node-dates">b. 1971</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="journey-footer">
+            <div class="footer-ornament">⁂</div>
+            <div class="footer-text">
+                <p>From the crown of Charlemagne to the present day, this family's story weaves through twelve centuries of European history. It is a testament to the resilience of family bonds, the power of heritage, and the extraordinary connections that link us to the great sweep of human civilization.</p>
+                <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">This genealogical research is based on extensive documentation including Crown Charters, Acts of Parliament, parish registers, census records, and professional genealogical research by Debrett Ancestry Research Ltd.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all era sections
+        document.querySelectorAll('.era-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Timeline navigation
+        const navItems = document.querySelectorAll('.timeline-nav-item');
+        const sections = document.querySelectorAll('.era-section');
+
+        // Update active nav item on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 300) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-section') === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll on nav click
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sectionId = item.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                
+                if (section) {
+                    window.scrollTo({
+                        top: section.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+    </script>
+</body>
+</html>
